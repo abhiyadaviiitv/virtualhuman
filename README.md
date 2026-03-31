@@ -1,38 +1,64 @@
-# Personality-Driven Virtual Human Behavior Engine
+# Autonomous Cognitive NPC Architecture (Backend + Unity integration)
 
-This is a production-ready Java Spring Boot backend that implements the behavioral reasoning from the paper *"Personality-Driven Virtual Human Behavior Generation (X’s Day)"*.
+A production-ready Java Spring Boot backend and Unity VR integration suite that empowers Virtual Human NPCs with deep cognitive autonomy. The system implements a two-stage LLM inference pipeline powered by Groq, calculating emotional decay, life goals, short-term memory (Redis), and permanent semantic identity (MongoDB) to generate high-quality emergent behaviors.
 
-## Setup
+## Features Built in the 7-Phase Upgradation
+*   **Dual-Stage Inference Engine**: Splits analysis (needs/emotions) from execution (action generation) using discrete temperatures via the Groq LLaMA-based API.
+*   **Mathematical Emotion Engine**: Tracks Stress, Restedness, and Boredom, applying linear time-decay and action-based adjustments.
+*   **Advanced Memory System**: 
+    *   **Short-Term Working Memory** (Redis): Lightning-fast retrieval of the last N completed actions.
+    *   **Semantic / Episodic Memory** (MongoDB): Permanent identity traits and consolidated life events.
+*   **Goal-Oriented Autonomy**: NPCs balance rigid long-term goals against immediate physiological limits (e.g., getting burnt out from working too much and autonomously taking a nap).
+*   **Real-Time VR Integration**: Replaces HTTP polling with a persistent Raw TCP WebSocket (`ws://localhost:8080/ws/behavior`) bridging the brain directly to Unity `NavMeshAgent` and `Animator` components.
 
-1. **MongoDB**: Ensure MongoDB is running locally on port `27017`.
-2. **HuggingFace API Key**: In `src/main/resources/application.properties`, configure your valid HF API key:
-   ```properties
-   huggingface.api.key=YOUR_API_KEY
-   ```
-3. **Run**:
-   If using Maven wrapper:
-   ```bash
-   ./mvnw spring-boot:run
-   ```
-   Or standard Maven:
-   ```bash
-   mvn spring-boot:run
-   ```
+---
 
-## API Documentation
+## 🚀 Quick Setup (Backend)
 
-### WebSocket `ws://localhost:8080/ws/behavior` (Recommended)
-Connect to the raw TCP WebSocket to maintain a persistent connection. 
-1. Send the exact JSON payload shown below as a Text Frame.
-2. The server will respond with the `BehaviorResponse` JSON asynchronously over the same socket.
+### 1. Prerequisites
+*   **Java 21** and Maven
+*   **MongoDB**: Running on `localhost:27017`
+*   **Redis**: Running on `localhost:6379` (`docker run -p 6379:6379 -d redis`)
+*   **Groq API Key**: Obtain a free key from console.groq.com.
+
+### 2. Configuration
+Open `src/main/resources/application.properties` and add your Groq key:
+```properties
+groq.api.key=YOUR_GROQ_API_KEY
+```
+
+### 3. Run the Brain
+Fire up the Spring Boot backend:
+```bash
+./mvnw spring-boot:run
+```
+
+---
+
+## 🎮 Unity VR Integration
+
+The Java Brain comes bundled with 13 C# scripts designed to handle real-time spatial awareness and robotic execution in Unity.
+
+1. Locate the `UnityScripts/` folder inside the project root.
+2. Drag the entire folder into your Unity `Assets/Scripts/` directory.
+3. Open `UnityScripts/UnitySetupGuide.md` directly inside Unity for step-by-step instructions on wiring up the `SensorySphere`, baking your `NavMesh`, and connecting the WebSocket client.
+
+---
+
+## 🔌 API Documentation
+
+### 🟢 WebSocket `ws://localhost:8080/ws/behavior` (Recommended)
+Connect your VR Client (Unity/Unreal) to the raw TCP WebSocket. 
+1. Send the `BehaviorRequest` JSON as a text frame to trigger an LLM thought cycle.
+2. The server will respond over the same socket with the `BehaviorResponse` JSON containing the `NavMesh` target, `Animator` trigger, and spoken `dialogue`.
 
 ### HTTP POST `/behavior/generate`
-Generates the next behavior for the virtual human avatar via standard HTTP polling.
+Standard HTTP polling endpoint for behavior generation (legacy alternative to WebSockets).
 
-#### Request Example
+#### Request Payload Structure
 ```json
 {
-  "avatarId": "user1",
+  "avatarId": "npc_001",
   "worldState": {
     "personality": {
       "openness": 0.8,
@@ -42,11 +68,11 @@ Generates the next behavior for the virtual human avatar via standard HTTP polli
       "neuroticism": 0.2
     },
     "attributes": {
-      "age": 22,
-      "occupation": "student",
-      "hobbies": ["coding", "music"]
+      "age": 25,
+      "occupation": "software engineer",
+      "hobbies": ["coding", "gaming"]
     },
-    "time": "10:30",
+    "time": "14:30",
     "completedActivities": [
       "woke up", 
       "entered classroom"
@@ -56,25 +82,27 @@ Generates the next behavior for the virtual human avatar via standard HTTP polli
       "agentLocation": "near desk",
       "objects": [
         { "name": "chair", "distance": 1.2 },
-        { "name": "laptop", "distance": 0.8 }
+        { "name": "computer", "distance": 0.8 }
       ]
     }
   }
 }
 ```
 
-#### Response Example
+#### Response Structure
 ```json
 {
-  "need": "social",
-  "task": "study",
-  "activity": "ask_question",
-  "object": "teacher",
-  "animation": "raise_hand",
-  "dialogue": "Excuse me, can you explain this?"
+  "need": "Physiological",
+  "task": "Repose",
+  "activity": "sit down and rest",
+  "object": "chair",
+  "animation": "sit",
+  "dialogue": "I need to take a break right now."
 }
 ```
 
-### Architecture Features
-- **Autoregressive Memory**: Once a behavior is generated and executed, it's stored in MongoDB and contextually loaded automatically for future API interactions regarding the same `avatarId`.
-- **Hierarchical Decision Making**: The `BehaviorPlannerService` runs a two-stage prompt passing Need -> Task -> Activity constraints to the LLM.
+---
+
+## 📊 Observability (Prometheus)
+The backend is highly resilient with Circuit Breakers built over the Groq REST client.
+Visit `http://localhost:8080/actuator/prometheus` to scrape metrics on LLM latency, HTTP failures, and circuit breaker states.
