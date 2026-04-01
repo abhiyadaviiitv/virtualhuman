@@ -1,0 +1,30 @@
+{
+  "avatarId": "test_user1",
+  "worldState": {
+    "personality": {
+      "openness": 0.8,
+      "conscientiousness": 0.7,
+      "extraversion": 0.8,
+      "agreeableness": 0.6,
+      "neuroticism": 0.2
+    },
+    "attributes": {
+      "age": 25,
+      "occupation": "software engineer",
+      "hobbies": ["gaming", "reading"]
+    },
+    "time": "14:00",
+    "completedActivities": [
+      "finished lunch", 
+      "sat at desk"
+    ],
+    "scene": {
+      "sceneDescription": "Office room with a computer",
+      "agentLocation": "at desk",
+      "objects": [
+        { "name": "computer", "distance": 0.5 },
+        { "name": "coffee mug", "distance": 0.3 }
+      ]
+    }
+  }
+}

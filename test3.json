@@ -1,0 +1,45 @@
+{
+    "avatarId": "test_user3",
+    "worldState": {
+        "personality": {
+            "openness": 0.8,
+            "conscientiousness": 0.7,
+            "extraversion": 0.8,
+            "agreeableness": 0.6,
+            "neuroticism": 0.5
+        },
+        "attributes": {
+            "age": 25,
+            "occupation": "software engineer",
+            "hobbies": [
+                "gaming",
+                "reading"
+            ],
+            "energy": 0.6,
+            "hunger": 0.4
+        },
+        "time": "07:30",
+        "completedActivities": [
+            "woke up",
+            "got out of bed"
+        ],
+        "scene": {
+            "sceneDescription": "Bedroom with a bed, wardrobe, and side table",
+            "agentLocation": "near bed",
+            "objects": [
+                {
+                    "name": "bed",
+                    "distance": 0.5
+                },
+                {
+                    "name": "wardrobe",
+                    "distance": 2.0
+                },
+                {
+                    "name": "side table",
+                    "distance": 1.0
+                }
+            ]
+        }
+    }
+}
