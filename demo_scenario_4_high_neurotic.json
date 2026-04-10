@@ -1,0 +1,51 @@
+{
+    "avatarId": "neurotic_npc",
+    "worldState": {
+        "personality": {
+            "openness": 0.3,
+            "conscientiousness": 0.9,
+            "extraversion": 0.2,
+            "agreeableness": 0.4,
+            "neuroticism": 0.9
+        },
+        "attributes": {
+            "age": 30,
+            "occupation": "accountant",
+            "hobbies": [
+                "reading",
+                "organizing"
+            ]
+        },
+        "time": "18:00",
+        "completedActivities": [
+            "woke up",
+            "ate breakfast",
+            "worked on computer for 3 hours",
+            "had a quick snack",
+            "worked on computer for 4 more hours",
+            "finished coding tasks"
+        ],
+        "scene": {
+            "sceneDescription": "A cozy apartment with a kitchen, living room, and bedroom",
+            "agentLocation": "at desk",
+            "objects": [
+                {
+                    "name": "computer",
+                    "distance": 0.5
+                },
+                {
+                    "name": "sofa",
+                    "distance": 3.0
+                },
+                {
+                    "name": "television",
+                    "distance": 3.5
+                },
+                {
+                    "name": "bookshelf",
+                    "distance": 4.0
+                }
+            ]
+        }
+    }
+}

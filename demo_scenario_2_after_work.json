@@ -1,0 +1,52 @@
+{
+    "avatarId": "test_user1",
+    "worldState": {
+        "personality": {
+            "openness": 0.8,
+            "conscientiousness": 0.7,
+            "extraversion": 0.5,
+            "agreeableness": 0.6,
+            "neuroticism": 0.3
+        },
+        "attributes": {
+            "age": 25,
+            "occupation": "software engineer",
+            "hobbies": [
+                "coding",
+                "gaming",
+                "reading"
+            ]
+        },
+        "time": "18:00",
+        "completedActivities": [
+            "woke up",
+            "ate breakfast",
+            "worked on computer for 3 hours",
+            "had a quick snack",
+            "worked on computer for 4 more hours",
+            "finished coding tasks"
+        ],
+        "scene": {
+            "sceneDescription": "A cozy apartment with a kitchen, living room, and bedroom",
+            "agentLocation": "at desk",
+            "objects": [
+                {
+                    "name": "computer",
+                    "distance": 0.5
+                },
+                {
+                    "name": "sofa",
+                    "distance": 3.0
+                },
+                {
+                    "name": "television",
+                    "distance": 3.5
+                },
+                {
+                    "name": "bookshelf",
+                    "distance": 4.0
+                }
+            ]
+        }
+    }
+}

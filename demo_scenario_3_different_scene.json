@@ -1,0 +1,52 @@
+{
+    "avatarId": "test_user1",
+    "worldState": {
+        "personality": {
+            "openness": 0.8,
+            "conscientiousness": 0.7,
+            "extraversion": 0.5,
+            "agreeableness": 0.6,
+            "neuroticism": 0.3
+        },
+        "attributes": {
+            "age": 25,
+            "occupation": "software engineer",
+            "hobbies": [
+                "coding",
+                "gaming",
+                "reading"
+            ]
+        },
+        "time": "18:00",
+        "completedActivities": [
+            "woke up",
+            "ate breakfast",
+            "worked on computer for 3 hours",
+            "had a quick snack",
+            "worked on computer for 4 more hours",
+            "finished coding tasks"
+        ],
+        "scene": {
+            "sceneDescription": "An outdoor park with benches and a jogging track",
+            "agentLocation": "park entrance",
+            "objects": [
+                {
+                    "name": "bench",
+                    "distance": 2.0
+                },
+                {
+                    "name": "jogging track",
+                    "distance": 5.0
+                },
+                {
+                    "name": "water fountain",
+                    "distance": 3.0
+                },
+                {
+                    "name": "tree",
+                    "distance": 1.5
+                }
+            ]
+        }
+    }
+}
